@@ -1,100 +1,145 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Reservation') }}</div>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nom') }}</label>
 
-            .full-height {
-                height: 100vh;
-            }
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
-            .position-ref {
-                position: relative;
-            }
+                        <div class="form-group row">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Prenom') }}</label>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+                            <div class="col-md-6">
+                                <input id="firstname" type="text"
+                                    class="form-control @error('firstname') is-invalid @enderror" name="firstname"
+                                    value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
 
-            .content {
-                text-align: center;
-            }
+                                @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
-            .title {
-                font-size: 84px;
-            }
+                        <div class="form-group row">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Telephone') }}</label>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+                            <div class="col-md-6">
+                                <input id="num" type="text" class="form-control @error('num') is-invalid @enderror"
+                                    name="num" value="{{ old('num') }}" required autocomplete="num" autofocus>
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+                                @error('num')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                        <div class="form-group row">
+                            <label for="email"
+                                class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Entreprise') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="num_ent" type="text"
+                                    class="form-control @error('num_ent') is-invalid @enderror" name="num_ent"
+                                    value="{{ old('num_ent') }}" autocomplete="num_ent" autofocus>
+
+                                @error('num_ent')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Siret') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="siret" type="text" class="form-control @error('siret') is-invalid @enderror"
+                                    name="siret" value="{{ old('siret') }}" autocomplete="siret" autofocus>
+
+                                @error('siret')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+<!--*********************************************************************************************************************************!-->
+
+                        <div class="form-group row">
+                            <label for="name"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Type de chalet') }}</label>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="chalet" id="inlineRadio1"
+                                    value="option1">
+                                <label class="form-check-label" for="inlineRadio1">Chalet 2x2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="chalet" id="inlineRadio2"
+                                    value="option2">
+                                <label class="form-check-label" for="inlineRadio2">Chalet 2x3</label>
+                            </div>
+                            </div>
+
+<!--*********************************************************************************************************************************!-->
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Reserver') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</div>
+@endsection
