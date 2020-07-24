@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::post('/reserve', 'ReserveController@store')->name('reserve');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
